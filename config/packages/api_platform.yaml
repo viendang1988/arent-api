@@ -1,0 +1,37 @@
+api_platform:
+    title: Hello API Platform
+    version: 1.0.0
+    mapping:
+        paths: ['%kernel.project_dir%/src/Entity']
+    patch_formats:
+        json: [ 'application/merge-patch+json', 'application/json' ]
+        jsonapi: [ 'application/vnd.api+json' ]
+    swagger:
+        versions: [3]
+    # Good cache defaults for REST APIs
+    defaults:
+        pagination_client_items_per_page: true
+        stateless: true
+        cache_headers:
+            vary: ['Content-Type', 'Authorization', 'Origin']
+    collection:
+        pagination:
+            items_per_page_parameter_name: limit
+    formats:
+        jsonapi: [ 'application/vnd.api+json' ]
+        jsonld: [ 'application/ld+json' ]
+        jsonhal: [ 'application/hal+json' ]
+        json: [ 'application/json' ]
+        csv: [ 'text/csv' ]
+        html: [ 'text/html' ]
+        multipart: [ 'multipart/form-data' ]
+    exception_to_status:
+        # The 4 following handlers are registered by default, keep those lines to prevent unexpected side effects
+        Symfony\Component\Serializer\Exception\ExceptionInterface: 400 # Use a raw status code (recommended)
+        ApiPlatform\Exception\InvalidArgumentException: !php/const Symfony\Component\HttpFoundation\Response::HTTP_BAD_REQUEST
+        ApiPlatform\Exception\FilterValidationException: 400
+        Doctrine\ORM\OptimisticLockException: 409
+        Symfony\Component\HttpKernel\Exception\NotFoundHttpException: 404
+        # Validation exception
+        ApiPlatform\Validator\Exception\ValidationException: !php/const Symfony\Component\HttpFoundation\Response::HTTP_UNPROCESSABLE_ENTITY
+    allow_plain_identifiers: true
