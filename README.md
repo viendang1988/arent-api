@@ -4,7 +4,9 @@
 - PHP 8.1
 - MySQL 8.0.29
 
-## 2. Build code
+## 2. Diagram
+![alt text](https://github.com/viendang1988/arent-api/blob/main/docs/diagram.png?raw=true)
+## 3. Build code
 - Run composer to build vendor
   ``composer install``
 
@@ -25,14 +27,14 @@
 
   ``bin/console lexik:jwt:generate-keypair``
 
-## 3. Migrate Database
+## 4. Migrate Database
 - Create the database
 - Run this command to create tables
   ```shell
     bin/console doctrine:migrations:migrate
   ```
 
-## 4. How to use
+## 5. How to use
 ### Start web server
 
 Start web server, example http://localhost:8000
@@ -40,4 +42,4 @@ Start web server, example http://localhost:8000
   symfony serve
   ```
 
-PLEASE READ all the documents in /docs to know all APIs
+PLEASE READ all the documents in [/docs](https://github.com/viendang1988/arent-api/tree/main/docs) to know all APIs
